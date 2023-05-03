@@ -1,8 +1,9 @@
-import TripInfoView from './view/trip-info-view.js';
-import FilterView from './view/filter-view.js';
-import SortView from './view/sort-view.js';
+import InfoPointView from './view/info-point-view.js';
+import FilterPointView from './view/filter-point-view.js';
+import SortPointView from './view/sort-point-view.js';
 import {render, RenderPosition} from './render.js';
 import ListPresenter from './presenter/list-presenter.js';
+import PointsModel from './model/points-model.js';
 
 const siteBodyElement = document.querySelector('.page-body');
 const siteHeaderElement = siteBodyElement.querySelector('.page-header');
@@ -12,10 +13,14 @@ const siteTripFilterElement = siteTripMainElement.querySelector('.trip-controls_
 const siteMainElement = siteBodyElement.querySelector('.page-main');
 const siteTripEventsElement = siteMainElement.querySelector('.trip-events');
 
-const listPresenter = new ListPresenter({listContainer: siteTripEventsElement});
+const pointsModel = new PointsModel();
+const listPresenter = new ListPresenter({
+  listContainer: siteTripEventsElement,
+  pointsModel,
+});
 
-render(new TripInfoView(), siteTripMainElement, RenderPosition.AFTERBEGIN);
-render(new FilterView(), siteTripFilterElement);
-render(new SortView(), siteTripEventsElement);
+render(new InfoPointView(), siteTripMainElement, RenderPosition.AFTERBEGIN);
+render(new FilterPointView(), siteTripFilterElement);
+render(new SortPointView(), siteTripEventsElement);
 
 listPresenter.init();

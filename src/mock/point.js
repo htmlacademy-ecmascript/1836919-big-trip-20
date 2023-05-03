@@ -1,18 +1,59 @@
-import { getRandomArrayElement } from "../utils";
-import { TYPES } from "../const";
+import { getRandomArrayElement } from '../utils';
+import { TYPES } from '../const';
 
 const mocPoints = [
   {
-    "id": "f4b62099-293f-4c3d-a702-94eec4a2808c",
-    "base_price": 1100,
-    "date_from": "2019-07-10T22:55:56.845Z",
-    "date_to": "2019-07-11T11:22:13.375Z",
-    "destination": "bfa5cb75-a1fe-4b77-a83c-0e528e910e04",
-    "is_favorite": false,
-    "offers": [
-      "b4c3e4e6-9053-42ce-b747-e281314baa31"
+    basePrice: 1100,
+    dateFrom: new Date('2023-06-23T22:55:56.845Z'),
+    dateTo: new Date('2023-06-23T22:55:56.845Z'),
+    destination: 'Армавир',
+    isFavorite: true,
+    offers: [
+      'Order Uber',
+      'Add luggage',
     ],
-    "type": "taxi"
-  }
+    type: getRandomArrayElement(TYPES),
+  },
+  {
+    basePrice: 1100,
+    dateFrom: new Date('2023-06-23T22:55:56.845Z'),
+    dateTo: new Date('2023-06-23T11:22:13.375Z'),
+    destination: 'Армавир',
+    isFavorite: false,
+    offers: [
+      'Order Uber',
+      'Add luggage',
+    ],
+    type: getRandomArrayElement(TYPES),
+  },
+  {
+    basePrice: 110,
+    dateFrom: new Date('2023-01-02T22:55:56.845Z'),
+    dateTo: new Date('2023-06-23T11:22:13.375Z'),
+    destination: 'Армавир',
+    isFavorite: false,
+    offers: [
+      'Order Uber',
+      'Add luggage',
+    ],
+    type: getRandomArrayElement(TYPES),
+  },
+  {
+    basePrice: 1100,
+    dateFrom: new Date('2023-04-13T22:55:56.845Z'),
+    dateTo: new Date('2023-06-23T11:22:13.375Z'),
+    destination: 'Армавир',
+    isFavorite: false,
+    offers: [
+      'Order Uber',
+      'Add luggage',
+    ],
+    type: getRandomArrayElement(TYPES),
+  },
 ];
 
+function getRandomPoint() {
+  return getRandomArrayElement(mocPoints);
+}
+
+export {getRandomPoint};
