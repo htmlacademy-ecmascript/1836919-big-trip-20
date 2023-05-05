@@ -1,11 +1,40 @@
-const TYPES = ['Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'];
-const CITES = ['Omsk', 'Kursk', 'Lipetsk', 'Kemerovo', 'Moscow', 'Nadym', 'Norilsk', 'Petrozavodsk', 'Penza'];
+const OFFER_COUNT = 5;
 
-const DATE_FORMAT = {
-  MONTH_DAY: 'MMM DD',
-  HOUR_MINUTES: 'HH:mm',
-  FULL_DATETIME_DASH: 'YYYY-MM-DDTHH:mm',
-  FULL_DATETIME_SLASH: 'DD/MM/YYTHH:mm'
+const DESCRIPTION_COUNT = 5;
+
+const POINT_COUNT = 5;
+
+const TYPES = [
+  'Taxi', 
+  'Bus', 
+  'Train', 
+  'Ship', 
+  'Drive', 
+  'Flight', 
+  'Check-in', 
+  'Sightseeing', 
+  'Restaurant'
+];
+
+const DEFAULT_TYPE = 'flight';
+
+const POINT_EMPTY = {
+  basePrice: 0,
+  dateFrom: null,
+  dateTo: null,
+  destination: null,
+  isFavorite: false,
+  offers: [],
+  type: DEFAULT_TYPE
 };
 
-export { TYPES, CITES, DATE_FORMAT };
+// const DATE_FORMAT = {
+//   MONTH_DAY: 'MMM DD',
+//   HOUR_MINUTES: 'HH:mm',
+//   FULL_DATETIME_DASH: 'YYYY-MM-DDTHH:mm',
+//   FULL_DATETIME_SLASH: 'DD/MM/YYTHH:mm'
+// };
+
+export { 
+  TYPES
+};

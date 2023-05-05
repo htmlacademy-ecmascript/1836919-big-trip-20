@@ -1,59 +1,18 @@
-import { getRandomArrayElement } from '../utils';
-import { TYPES } from '../const';
+import { getRandomInteger } from '../utils.js';
+import { getDate } from './utils.js';
+import { Price } from './const.js';
 
-const mocPoints = [
-  {
-    basePrice: 1100,
-    dateFrom: new Date('2023-06-23T22:55:56.845Z'),
-    dateTo: new Date('2023-06-23T22:55:56.845Z'),
-    destination: 'Армавир',
-    isFavorite: true,
-    offers: [
-      'Order Uber',
-      'Add luggage',
-    ],
-    type: getRandomArrayElement(TYPES),
-  },
-  {
-    basePrice: 1100,
-    dateFrom: new Date('2023-06-23T22:55:56.845Z'),
-    dateTo: new Date('2023-06-23T11:22:13.375Z'),
-    destination: 'Армавир',
-    isFavorite: false,
-    offers: [
-      'Order Uber',
-      'Add luggage',
-    ],
-    type: getRandomArrayElement(TYPES),
-  },
-  {
-    basePrice: 110,
-    dateFrom: new Date('2023-01-02T22:55:56.845Z'),
-    dateTo: new Date('2023-06-23T11:22:13.375Z'),
-    destination: 'Армавир',
-    isFavorite: false,
-    offers: [
-      'Order Uber',
-      'Add luggage',
-    ],
-    type: getRandomArrayElement(TYPES),
-  },
-  {
-    basePrice: 1100,
-    dateFrom: new Date('2023-04-13T22:55:56.845Z'),
-    dateTo: new Date('2023-06-23T11:22:13.375Z'),
-    destination: 'Армавир',
-    isFavorite: false,
-    offers: [
-      'Order Uber',
-      'Add luggage',
-    ],
-    type: getRandomArrayElement(TYPES),
-  },
-];
-
-function getRandomPoint() {
-  return getRandomArrayElement(mocPoints);
+function generatePoint(type, destinationId, offerIds) {
+  return {
+    id: cripto.randomUUID(),
+    basePrice: getRandomInteger(Price.MIN, Price.MAX),
+    dateFrom: getDate({next: false}),
+    dateTo: getDate({next: false}),
+    destination: destinationId,
+    isFavorite: !!getRandomInteger(0, 1),
+    offers: offerIds,
+    type
+  };
 }
 
-export {getRandomPoint};
+export {generatePoint};

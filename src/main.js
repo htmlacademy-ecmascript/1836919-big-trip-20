@@ -1,18 +1,28 @@
 import TripInfoView from './view/trip-info-view.js';
 import TripFilterView from './view/trip-filter-view.js';
-import TripSortView from './view/trip-sort-view.js';
-import {render, RenderPosition} from './render.js';
 import ListPresenter from './presenter/list-presenter.js';
+
+import {render, RenderPosition} from './render.js';
+
+import MockService from './service/mock-service.js';
+import DestinationsModel from './model/destinations-model.js';
+import OffersModel from './model/offers-model.js';
 import PointsModel from './model/points-model.js';
 
 const siteBodyElement = document.querySelector('.page-body');
 const siteTripInfoElement = siteBodyElement.querySelector('.trip-main');
 const siteTripFilterElement = siteBodyElement.querySelector('.trip-controls__filters');
-const siteTripSortEventsElement = siteBodyElement.querySelector('.trip-events');
+const siteTripEventsElement = siteBodyElement.querySelector('.trip-events');
 
-const pointsModel = new PointsModel();
+const mockService = new MockService();
+const destinationsModel = new DestinationsModel(mockService);
+const offersModel = new OffersModel(mockService)
+const pointsModel = new PointsModel(mockService);
+
 const listPresenter = new ListPresenter({
-  listContainer: siteTripSortEventsElement,
+  listContainer: siteTripEventsElement,
+  destinationsModel,
+  offersModel,
   pointsModel,
 });
 
