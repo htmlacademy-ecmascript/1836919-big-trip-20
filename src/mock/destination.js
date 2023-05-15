@@ -1,5 +1,4 @@
-import { getRandomArrayElement, getRandomInteger } from '../utils'; 
-import { TYPES, CITIES } from '../const';
+import { getRandomInteger } from '../utils'; 
 
 const mockDestination = [
   {
@@ -8,12 +7,12 @@ const mockDestination = [
     name: 'Omsk',
     pictures: [
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 1000)}`,
-        'description': `Omsk description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 1000)}`,
+        description: `Omsk description`
       },
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Penza description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Penza description`
       }
     ]
   },
@@ -23,12 +22,12 @@ const mockDestination = [
     name: 'Moscow',
     pictures: [
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Moscow description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Moscow description`
       },
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Penza description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Penza description`
       }
     ]
   },
@@ -38,12 +37,12 @@ const mockDestination = [
     name: 'Norilsk',
     pictures: [
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Norilsk description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Norilsk description`
       },
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Penza description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Penza description`
       }
     ]
   },
@@ -53,12 +52,12 @@ const mockDestination = [
     name: 'Penza',
     pictures: [
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Penza description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Penza description`
       },
       {
-        'src': `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        'description': `Penza description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: `Penza description`
       }
     ]
   },

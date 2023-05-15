@@ -1,4 +1,4 @@
-const CITIES = ['Omsk', 'Kursk', 'Lipetsk', 'Kemerovo', 'Moscow', 'Nadym', 'Norilsk', 'Petrozavodsk', 'Penza'];
+// const CITIES = ['Omsk', 'Kursk', 'Lipetsk', 'Kemerovo', 'Moscow', 'Nadym', 'Norilsk', 'Petrozavodsk', 'Penza'];
 const TYPES = ['Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'];
 
 const MSEC_IN_SEC = 1000;
@@ -18,4 +18,4 @@ const DATE_FORMAT = {
   MINUTES_COUNT: 'mm[M]',
 };
 
-export { CITIES, TYPES, DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY };
+export { TYPES, DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY };
