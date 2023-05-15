@@ -1,15 +1,35 @@
 import { createElement } from '../render.js';
-import { travelingEventShortDate, travelingEventDate, travelingEventTimeDate } from '../utils.js';
+import { travelingEventDate, humanizeTravelTime } from '../utils.js';
+import { DATE_FORMAT } from '../const.js';
 
-function createPointTemplate(point) {
-  const {dateFrom, type, basePrice, dateTo, isFavorite} = point;
 
-  const shortDateStart = travelingEventShortDate(dateFrom);
-  const dateStart = travelingEventDate(dateFrom);
-  const dateTimeStart = travelingEventTimeDate(dateFrom);
+function createOffersTemplate(offerList) {
+ return offerList.length > 0 ? `${offerList.map((offer) =>
+    `<li class="event__offer">
+      <span class="event__offer-title">${offer.title}</span>
+      &plus;&euro;&nbsp;
+      <span class="event__offer-price">${offer.price}</span>
+    </li>`).join('')}`
+    : '';
+}
 
-  const dateEnd = travelingEventDate(dateTo);
-  const dateTimeEnd = travelingEventTimeDate(dateTo);
+function createPointTemplate(point, offers, destinations) {
+  const { basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList } = point;
+  const pointDestination = destinations.find((item) => point.destination === item.id);
+  const pointOffers = offers.find((item) => type === item.type);
+  const pointOffersList = pointOffers.offers.filter((item) => offersList.includes(Number(item.id)));
+  const eventOffersList = createOffersTemplate(pointOffersList);
+
+  const shortDateStart = travelingEventDate(dateFrom, DATE_FORMAT.MONTH_DAY);
+  const dateHourMinutesStart = travelingEventDate(dateFrom, DATE_FORMAT.HOUR_MINUTES);
+  const dateStart = travelingEventDate(dateFrom, DATE_FORMAT.FULL_DATETIME_DASH);
+  const dateTimeStart = travelingEventDate(dateFrom, DATE_FORMAT.FULL_DATETIME_DASH);
+
+  const dateHourMinutesEnd = travelingEventDate(dateTo, DATE_FORMAT.HOUR_MINUTES);
+  const dateEnd = travelingEventDate(dateTo, DATE_FORMAT.FULL_DATETIME_DASH);
+  const dateTimeEnd = travelingEventDate(dateTo, DATE_FORMAT.FULL_DATETIME_DASH);
+
+  const travelTime = humanizeTravelTime(dateFrom, dateTo);
 
   const favoriteClassName = isFavorite
     ? 'event__favorite-btn--active'
@@ -22,25 +42,21 @@ function createPointTemplate(point) {
           <div class="event__type">
             <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
           </div>
-          <h3 class="event__title">${type} Amsterdam</h3>
+          <h3 class="event__title">${type} ${pointDestination.name}</h3>
           <div class="event__schedule">
             <p class="event__time">
-              <time class="event__start-time" datetime="${dateStart}T${dateTimeStart}">${dateTimeStart}</time>
+              <time class="event__start-time" datetime="${dateStart}T${dateTimeStart}">${dateHourMinutesStart}</time>
               &mdash;
-              <time class="event__end-time" datetime="${dateEnd}T${dateTimeEnd}">${dateTimeEnd}</time>
+              <time class="event__end-time" datetime="${dateEnd}T${dateTimeEnd}">${dateHourMinutesEnd}</time>
             </p>
-            <p class="event__duration">30M</p>
+            <p class="event__duration">${travelTime}</p>
           </div>
           <p class="event__price">
             &euro;&nbsp;<span class="event__price-value">${basePrice}</span>
           </p>
           <h4 class="visually-hidden">Offers:</h4>
           <ul class="event__selected-offers">
-            <li class="event__offer">
-              <span class="event__offer-title">Order Uber</span>
-              &plus;&euro;&nbsp;
-              <span class="event__offer-price">20</span>
-            </li>
+          ${eventOffersList}
           </ul>
           <button class="event__favorite-btn ${favoriteClassName} type="button">
             <span class="visually-hidden">Add to favorite</span>
@@ -57,18 +73,14 @@ function createPointTemplate(point) {
 }
 
 export default class PointView {
-  constructor({point, pointDestination, pointOffers}) {
+  constructor(point, destinations, offers) {
     this.point = point;
-    this.pointDestination = pointDestination;
-    this.pointOffers = pointOffers;
+    this.destinations = destinations;
+    this.offers = offers;
   }
 
   getTemplate() {
-    return createPointTemplate({
-      point: this.point,
-      pointDestination: this.pointDestination,
-      pointOffers: this.pointOffers
-    });
+    return createPointTemplate(this.point, this.offers, this.destinations);
   }
 
   getElement() {

@@ -28,7 +28,7 @@ function createTripFilterTemplate() {
   );
 }
 
-export default class TripFilterView {
+export default class tripFilterView {
   getTemplate() {
     return createTripFilterTemplate();
   }

@@ -8,7 +8,7 @@ function createListPointTemplate() {
   );
 }
 
-export default class ListPointView {
+export default class listPointView {
   getTemplate() {
     return createListPointTemplate();
   }

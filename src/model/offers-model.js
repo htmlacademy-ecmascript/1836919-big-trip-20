@@ -1,15 +1,9 @@
+import { mockOffers, findOfferByType } from '../mock/offer.js';
+
 export default class OffersModel {
-  constructor(service) {
-    this.service = service;
-    this.offers = this.service.getOffers();
-  }
+  allOffers = mockOffers;
 
-  get() {
-    return this.offers;
-  }
-
-  getByType(type) {
-    return this.offers
-      .find((offer) => offer.type === type).offers;
+  getOffers() {
+    return this.allOffers;
   }
 }

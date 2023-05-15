@@ -10,7 +10,7 @@ function createTripCostTemplate() {
   );
 }
 
-export default class TripCostView {
+export default class tripCostView {
   getTemplate() {
     return createTripCostTemplate();
   }

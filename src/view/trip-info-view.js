@@ -13,7 +13,7 @@ function createTripInfoTemplate() {
   );
 }
 
-export default class TripInfoView {
+export default class tripInfoView {
   getTemplate() {
     return createTripInfoTemplate();
   }
