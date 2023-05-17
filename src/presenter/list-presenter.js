@@ -1,22 +1,26 @@
-import ListEventView from '../view/list-event-view.js';
-import EventView from '../view/event-view.js';
-import EditEventView from '../view/edit-event-view.js';
-// import AddEventView from '../view/add-event-view.js';
+import ListPointView from '../view/list-point-view.js';
+import PointView from '../view/point-view.js';
+import EditPointView from '../view/edit-point-view.js';
+// import AddPointView from '../view/add-point-view.js';
 import {render} from '../render.js';
 
 export default class ListPresenter {
-  listEventComponent = new ListEventView();
+  listPointComponent = new ListPointView();
 
-  constructor({listContainer}) {
+  constructor({listContainer, pointsModel}) {
     this.listContainer = listContainer;
+    this.pointsModel = pointsModel;
   }
 
   init() {
-    render(this.listEventComponent, this.listContainer);
-    // render(new AddEventView(), this.listEventComponent.getElement());
-    render(new EditEventView(), this.listEventComponent.getElement());
-    for (let i = 0; i < 3; i++) {
-      render(new EventView(), this.listEventComponent.getElement());
+    render(this.listPointComponent, this.listContainer);
+    const points = this.pointsModel.getPoints();
+    const destinations = this.pointsModel.getDestination();
+    const offers = this.pointsModel.getOffers();
+    // render(new AddPointView(points[0], destinations, offers), this.listPointComponent.getElement());
+    render(new EditPointView(points[0], destinations, offers), this.listPointComponent.getElement());
+    for (const point of points) {
+      render(new PointView(point, destinations, offers), this.listPointComponent.getElement());
     }
   }
 }

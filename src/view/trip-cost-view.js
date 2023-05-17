@@ -1,16 +1,18 @@
 import { createElement } from '../render.js';
 
-function createListEventTemplate() {
+function createTripCostTemplate() {
   return (
     `
-    <ul class="trip-events__list"></ul>
+    <p class="trip-info__cost">
+        Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
+    </p>
     `
   );
 }
 
-export default class FilterView {
+export default class tripCostView {
   getTemplate() {
-    return createListEventTemplate();
+    return createTripCostTemplate();
   }
 
   getElement() {
