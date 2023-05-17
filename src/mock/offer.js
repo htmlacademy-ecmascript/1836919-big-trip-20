@@ -1,4 +1,4 @@
-import { getRandomInteger } from '../utils'; 
+import { getRandomInteger } from '../utils';
 
 const mockOffers = [
   {
@@ -110,6 +110,6 @@ const mockOffers = [
 
 function findOfferByType(type) {
   return mockOffers.find((el) => el.type === type);
-};
+}
 
 export { findOfferByType, mockOffers };

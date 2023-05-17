@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
-import {DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY} from './const.js'
+import {DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY} from './const.js';
 
 const humanizeTravelTime = function(dateFrom, dateTo) {
   const timeDiff = dayjs(dateTo).diff(dayjs(dateFrom));

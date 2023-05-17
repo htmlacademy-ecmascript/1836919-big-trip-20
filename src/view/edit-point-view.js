@@ -71,7 +71,7 @@ function createEditPointTemplate(point, destinations, offers) {
                 <label class="event__label  event__type-output" for="event-destination-${point.id}">
                   ${type}
                 </label>
-                <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="{pointDestination.name}" list="destination-list-${point.id}">
+                <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="${pointDestination.name}" list="destination-list-${point.id}">
                 <datalist id="destination-list-${point.id}">
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
