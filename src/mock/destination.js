@@ -1,4 +1,4 @@
-import { getRandomInteger } from '../utils'; 
+import { getRandomInteger } from '../utils';
 
 const mockDestination = [
   {
@@ -7,12 +7,12 @@ const mockDestination = [
     name: 'Omsk',
     pictures: [
       {
-        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 1000)}`,
-        description: `Omsk description`
+        src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
+        description: 'Omsk description'
       },
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Penza description`
+        description: 'Omsk description 2'
       }
     ]
   },
@@ -23,11 +23,11 @@ const mockDestination = [
     pictures: [
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Moscow description`
+        description: 'Moscow description'
       },
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Penza description`
+        description: 'Moscow description 2'
       }
     ]
   },
@@ -38,11 +38,11 @@ const mockDestination = [
     pictures: [
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Norilsk description`
+        description: 'Norilsk description'
       },
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Penza description`
+        description: 'Norilsk description 2'
       }
     ]
   },
@@ -53,11 +53,11 @@ const mockDestination = [
     pictures: [
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Penza description`
+        description: 'Penza description'
       },
       {
         src: `https://loremflickr.com/300/200?random=${getRandomInteger(1000, 100000)}`,
-        description: `Penza description`
+        description: 'Penza description 2'
       }
     ]
   },

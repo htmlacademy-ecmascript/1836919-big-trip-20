@@ -4,7 +4,7 @@ import { DATE_FORMAT } from '../const.js';
 
 
 function createOffersTemplate(offerList) {
- return offerList.length > 0 ? `${offerList.map((offer) =>
+  return offerList.length > 0 ? `${offerList.map((offer) =>
     `<li class="event__offer">
       <span class="event__offer-title">${offer.title}</span>
       &plus;&euro;&nbsp;

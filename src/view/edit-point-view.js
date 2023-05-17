@@ -9,7 +9,7 @@ function createEditPointTemplate(point, destinations, offers) {
   const pointDestination = destinations.find((dest) => point.destination === dest.id);
   const { pictures } = pointDestination;
   const typeOffers = offers.find((offer) => offer.type === type).offers;
-  const pointOffers = typeOffers.filter((off) => point.offers.includes(off.id));
+  // const pointOffers = typeOffers.filter((off) => point.offers.includes(off.id));
 
   const createImageList = (arr) => arr.map((item) => `<img class="event__photo" src="${item.src}" alt="${item.description}">`).join('');
   const createPicturesList = createImageList(pictures);
@@ -68,10 +68,10 @@ function createEditPointTemplate(point, destinations, offers) {
             </div>
 
             <div class="event__field-group  event__field-group--destination">
-                <label class="event__label  event__type-output" for="event-destination-1">
+                <label class="event__label  event__type-output" for="event-destination-${point.id}">
                   ${type}
                 </label>
-                <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="Chamonix" list="destination-list-1">
+                <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="{pointDestination.name}" list="destination-list-${point.id}">
                 <datalist id="destination-list-${point.id}">
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
