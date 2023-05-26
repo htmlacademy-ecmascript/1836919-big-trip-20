@@ -1,7 +1,7 @@
 import AbstractView from '../framework/view/abstract-view.js';
 
 function createTripFilterItemTemplate(filter, isChecked) {
-  const {type, hasPoints} = filter;
+  const { type, hasPoints } = filter;
 
   return (
     `<div class="trip-filters__filter" >
