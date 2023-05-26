@@ -20,7 +20,7 @@ export default class ListPresenter {
     this.#pointsModel = pointsModel;
   }
 
-  init() {    
+  init() {
     this.#points = [...this.#pointsModel.points];
     this.#destinations = [...this.#pointsModel.destination];
     this.#offers = [...this.#pointsModel.offers];
@@ -44,30 +44,30 @@ export default class ListPresenter {
       this.#renderPoint(this.#points[i], this.#destinations, this.#offers);
     }
   }
-  
+
   #renderPoint(point, destination, offer) {
-    
+
     const escKeyDownHandler = (evt) => {
       if (evt.key === 'Escape') {
         evt.preventDefault();
         replaceFormToPoint();
         document.removeEventListener('keydown', escKeyDownHandler);
       }
-    }
+    };
 
     const pointComponent = new PointView(
-      point, 
-      destination, 
-      offer, 
-      {onEditClick: () =>  replacePointToForm()}
+      point,
+      destination,
+      offer,
+      {onEditClick: () => replacePointToForm()}
     );
-    
+
     const pointEditComponent = new EditPointView(
-      point, 
-      destination, 
-      offer, 
+      point,
+      destination,
+      offer,
       {onFormClick: () => replaceFormToPoint()}
-    )
+    );
 
     function replacePointToForm() {
       replace(pointEditComponent, pointComponent);

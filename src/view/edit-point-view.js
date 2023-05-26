@@ -130,7 +130,7 @@ export default class EditPointView extends AbstractView {
   #destinations = null;
   #offers = null;
   #handleFormSubmit = null;
-  
+
 
   constructor(point, destinations, offers, {onFormClick}) {
     super();
