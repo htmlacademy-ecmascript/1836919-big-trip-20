@@ -1,6 +1,7 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { travelingEventDate, humanizeTravelTime } from '../utils.js';
+import { travelingEventDate, humanizeTravelTime } from '../utils/utils.js';
 import { DATE_FORMAT } from '../const.js';
+// import { BtnRollupView } from './btn-rollup-view.js';
 
 
 function createOffersTemplate(offerList) {
@@ -76,15 +77,24 @@ export default class PointView extends AbstractView {
   #point = null;
   #destinations = null;
   #offers = null;
+  #handleEditClick = null;
 
-  constructor(point, destinations, offers) {
+  constructor(point, destinations, offers, {onEditClick}) {
     super();
     this.#point = point;
     this.#destinations = destinations;
     this.#offers = offers;
+    this.#handleEditClick = onEditClick;
+
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
   get template() {
     return createPointTemplate(this.#point, this.#offers, this.#destinations);
   }
+
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleEditClick();
+  };
 }
