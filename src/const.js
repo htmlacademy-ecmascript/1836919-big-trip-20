@@ -18,4 +18,11 @@ const DATE_FORMAT = {
   MINUTES_COUNT: 'mm[M]',
 };
 
-export { TYPES, DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY };
+const FilterType = {
+  EVERYTHING: 'everything',
+  FUTURE: 'future',
+  PRESENT: 'present',
+  PAST: 'past'
+};
+
+export { TYPES, DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY, FilterType };
