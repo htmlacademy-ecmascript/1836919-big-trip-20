@@ -1,8 +1,6 @@
 import AbstractView from '../framework/view/abstract-view.js';
 import { travelingEventDate, humanizeTravelTime } from '../utils/utils.js';
 import { DATE_FORMAT } from '../const.js';
-// import { BtnRollupView } from './btn-rollup-view.js';
-
 
 function createOffersTemplate(offerList) {
   return offerList.length > 0 ? `${offerList.map((offer) =>
@@ -14,9 +12,9 @@ function createOffersTemplate(offerList) {
     : '';
 }
 
-function createPointTemplate(point, offers, destinations) {
-  const { basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList } = point;
-  const pointDestination = destinations.find((item) => point.destination === item.id);
+function createPointTemplate(points, offers, destinations) {
+  const { basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList } = points;
+  const pointDestination = destinations.find((item) => points.id === item.id);
   const pointOffers = offers.find((item) => type === item.type);
   const pointOffersList = pointOffers.offers.filter((item) => offersList.includes(Number(item.id)));
   const eventOffersList = createOffersTemplate(pointOffersList);
@@ -74,14 +72,14 @@ function createPointTemplate(point, offers, destinations) {
 }
 
 export default class PointView extends AbstractView {
-  #point = null;
+  #points = null;
   #destinations = null;
   #offers = null;
   #handleEditClick = null;
 
-  constructor(point, destinations, offers, {onEditClick}) {
+  constructor({points, destinations, offers, onEditClick}) {
     super();
-    this.#point = point;
+    this.#points = points;
     this.#destinations = destinations;
     this.#offers = offers;
     this.#handleEditClick = onEditClick;
@@ -90,7 +88,7 @@ export default class PointView extends AbstractView {
   }
 
   get template() {
-    return createPointTemplate(this.#point, this.#offers, this.#destinations);
+    return createPointTemplate(this.#points, this.#offers, this.#destinations);
   }
 
   #editClickHandler = (evt) => {

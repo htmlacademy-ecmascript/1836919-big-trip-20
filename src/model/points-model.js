@@ -7,12 +7,12 @@ const POINT_COUNT = 4;
 export default class PointsModel {
   #points = null;
   #offers = null;
-  #destination = null;
+  #destinations = null;
 
   constructor() {
     this.#points = Array.from({length: POINT_COUNT}, getRandomPoint);
     this.#offers = mockOffers;
-    this.#destination = mockDestination;
+    this.#destinations = mockDestination;
   }
 
   get points () {
@@ -23,7 +23,7 @@ export default class PointsModel {
     return this.#offers;
   }
 
-  get destination() {
-    return this. #destination;
+  get destinations() {
+    return this.#destinations;
   }
 }

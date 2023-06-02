@@ -2,14 +2,14 @@ import AbstractView from '../framework/view/abstract-view.js';
 import { travelingEventDate } from '../utils/utils.js';
 import { TYPES, DATE_FORMAT } from '../const.js';
 
-function createEditPointTemplate(point, destinations, offers) {
+function createEditPointTemplate(points, destinations, offers) {
 
-  const { basePrice, dateTo, dateFrom, type } = point;
+  const { basePrice, dateTo, dateFrom, type } = points;
 
-  const pointDestination = destinations.find((dest) => point.destination === dest.id);
+  const pointDestination = destinations.find((dest) => points.destination === dest.id);
   const { pictures } = pointDestination;
   const typeOffers = offers.find((offer) => offer.type === type).offers;
-  // const pointOffers = typeOffers.filter((off) => point.offers.includes(off.id));
+  // const pointOffers = typeOffers.filter((off) => points.offers.includes(off.id));
 
   const createImageList = (arr) => arr.map((item) => `<img class="event__photo" src="${item.src}" alt="${item.description}">`).join('');
   const createPicturesList = createImageList(pictures);
@@ -18,14 +18,14 @@ function createEditPointTemplate(point, destinations, offers) {
   const dateSlashEnd = travelingEventDate(dateTo, DATE_FORMAT.FULL_DATETIME_SLASH);
 
   function createOffersTemplate() {
-    const isChecked = (offer) => point.offers.includes(offer.id) ? 'checked' : '';
+    const isChecked = (offer) => points.offers.includes(offer.id) ? 'checked' : '';
     return typeOffers.map((offer) =>
       `<div class="event__offer-selector">
     <input class="event__offer-checkbox  visually-hidden"
-      id = "event-offer-${type}-${point.id}"
+      id = "event-offer-${type}-${points.id}"
       type = "checkbox"
       name = "event-offer-${type}" ${isChecked(offer)}>
-    <label class="event__offer-label" for="event-offer-${offer.id}-${point.id}">
+    <label class="event__offer-label" for="event-offer-${offer.id}-${points.id}">
       <span class="event__offer-title">${offer.title}</span>
       &plus;&euro;&nbsp;
       <span class="event__offer-price">${offer.price}</span>
@@ -38,12 +38,12 @@ function createEditPointTemplate(point, destinations, offers) {
     return TYPES.map((pointType) =>
       `<div class="event__type-item">
       <input class="event__type-input  visually-hidden"
-        id="event-type-${pointType}-${point.id}"
+        id="event-type-${pointType}-${points.id}"
         type="radio"
         name="event-type"
         value="${pointType}"
         >
-      <label class="event__type-label  event__type-label--${pointType}" for="event-type-${pointType}-${point.id}">${pointType.charAt(0).toUpperCase().concat(pointType.slice(1))}</label>
+      <label class="event__type-label  event__type-label--${pointType}" for="event-type-${pointType}-${points.id}">${pointType.charAt(0).toUpperCase().concat(pointType.slice(1))}</label>
     </div>`).join('');
   }
 
@@ -52,11 +52,11 @@ function createEditPointTemplate(point, destinations, offers) {
         <form class="event event--edit" action="#" method="post">
             <header class="event__header">
             <div class="event__type-wrapper">
-                <label class="event__type  event__type-btn" for="event-type-toggle-${point.id}">
+                <label class="event__type  event__type-btn" for="event-type-toggle-${points.id}">
                 <span class="visually-hidden">Choose event type</span>
                 <img class="event__type-icon" width="17" height="17" src="img/icons/${type}.png" alt="Event type icon">
                 </label>
-                <input class="event__type-toggle  visually-hidden" id="event-type-toggle-${point.id}" type="checkbox">
+                <input class="event__type-toggle  visually-hidden" id="event-type-toggle-${points.id}" type="checkbox">
 
                 <div class="event__type-list">
                 <fieldset class="event__type-group">
@@ -68,11 +68,11 @@ function createEditPointTemplate(point, destinations, offers) {
             </div>
 
             <div class="event__field-group  event__field-group--destination">
-                <label class="event__label  event__type-output" for="event-destination-${point.id}">
+                <label class="event__label  event__type-output" for="event-destination-${points.id}">
                   ${type}
                 </label>
-                <input class="event__input  event__input--destination" id="event-destination-${point.id}" type="text" name="event-destination" value="${pointDestination.name}" list="destination-list-${point.id}">
-                <datalist id="destination-list-${point.id}">
+                <input class="event__input  event__input--destination" id="event-destination-${points.id}" type="text" name="event-destination" value="${pointDestination.name}" list="destination-list-${points.id}">
+                <datalist id="destination-list-${points.id}">
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
                   <option value="${pointDestination.name}">${pointDestination.name}</option>
@@ -80,19 +80,19 @@ function createEditPointTemplate(point, destinations, offers) {
             </div>
 
             <div class="event__field-group  event__field-group--time">
-                <label class="visually-hidden" for="event-start-time-${point.id}">From</label>
-                <input class="event__input  event__input--time" id="event-start-time-${point.id}" type="text" name="event-start-time" value="${dateSlashStart}">
+                <label class="visually-hidden" for="event-start-time-${points.id}">From</label>
+                <input class="event__input  event__input--time" id="event-start-time-${points.id}" type="text" name="event-start-time" value="${dateSlashStart}">
                 &mdash;
-                <label class="visually-hidden" for="event-end-time-${point.id}">To</label>
-                <input class="event__input  event__input--time" id="event-end-time-${point.id}" type="text" name="event-end-time" value="${dateSlashEnd}">
+                <label class="visually-hidden" for="event-end-time-${points.id}">To</label>
+                <input class="event__input  event__input--time" id="event-end-time-${points.id}" type="text" name="event-end-time" value="${dateSlashEnd}">
             </div>
 
             <div class="event__field-group  event__field-group--price">
-                <label class="event__label" for="event-price-${point.id}">
+                <label class="event__label" for="event-price-${points.id}">
                 <span class="visually-hidden">Price</span>
                 &euro;
                 </label>
-                <input class="event__input  event__input--price" id="event-price-${point.id}" type="text" name="event-price" value="${basePrice}">
+                <input class="event__input  event__input--price" id="event-price-${points.id}" type="text" name="event-price" value="${basePrice}">
             </div>
 
             <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
@@ -126,15 +126,15 @@ function createEditPointTemplate(point, destinations, offers) {
 }
 
 export default class EditPointView extends AbstractView {
-  #point = null;
+  #points = null;
   #destinations = null;
   #offers = null;
   #handleFormSubmit = null;
 
 
-  constructor(point, destinations, offers, {onFormClick}) {
+  constructor({points, destinations, offers, onFormClick}) {
     super();
-    this.#point = point;
+    this.#points = points;
     this.#destinations = destinations;
     this.#offers = offers;
 
@@ -146,7 +146,7 @@ export default class EditPointView extends AbstractView {
   }
 
   get template() {
-    return createEditPointTemplate(this.#point, this.#destinations, this.#offers);
+    return createEditPointTemplate(this.#points, this.#destinations, this.#offers);
   }
 
   #formSubmitHandler = (evt) => {
