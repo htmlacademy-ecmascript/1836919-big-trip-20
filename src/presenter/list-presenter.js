@@ -1,9 +1,9 @@
 import ListPointView from '../view/list-point-view.js';
 import NoPointView from '../view/no-point-view.js';
 // import AddPointView from '../view/add-point-view.js';
-import {RenderPosition, render} from '../framework/render.js';
+import { RenderPosition, render } from '../framework/render.js';
 import PointPresenter from './point-presenter.js';
-import {updateItem} from '../utils/common.js';
+import { updateItem } from '../utils/common.js';
 
 export default class ListPresenter {
   #boardContainer = null;
@@ -17,7 +17,7 @@ export default class ListPresenter {
   #offers = [];
   #pointPresenters = new Map();
 
-  constructor({boardContainer, pointsModel}) {
+  constructor({ boardContainer, pointsModel }) {
     this.#boardContainer = boardContainer;
     this.#pointsModel = pointsModel;
   }
@@ -50,7 +50,7 @@ export default class ListPresenter {
   }
 
   #handleModeChange = () => {
-    this.#pointPresenters.forEach((presenter) => presenter.resetView);
+    this.#pointPresenters.forEach((presenter) => presenter.resetView());
   };
 
   #handlePointChange = (updatePoint) => {
@@ -74,7 +74,7 @@ export default class ListPresenter {
   #renderList() {
     render(this.#listPointComponent, this.#boardContainer);
 
-    if(this.#points.length === 0) {
+    if (this.#points.length === 0) {
       this.#renderNoPoints();
       return;
     }
