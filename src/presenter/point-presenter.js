@@ -1,4 +1,4 @@
-import {render, replace, remove} from '../framework/render.js';
+import { render, replace, remove } from '../framework/render.js';
 import PointView from '../view/point-view.js';
 import EditPointView from '../view/edit-point-view.js';
 
@@ -20,7 +20,7 @@ export default class PointPresenter {
   #offers = null;
   #mode = Mode.DEFAULT;
 
-  constructor({pointListContainer, destinations, offers, onDataChange, onModeChange}) {
+  constructor({ pointListContainer, destinations, offers, onDataChange, onModeChange }) {
     this.#pointListContainer = pointListContainer;
     this.#handleDataChange = onDataChange;
     this.#handleModeChange = onModeChange;
