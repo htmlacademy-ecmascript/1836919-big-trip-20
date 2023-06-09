@@ -1,6 +1,6 @@
 import { getRandomInteger } from '../utils/common.js';
 
-const mockOffers = [
+export const mockOffers = [
   {
     type: 'taxi',
     offers: [
@@ -112,4 +112,4 @@ function findOfferByType(type) {
   return mockOffers.find((el) => el.type === type);
 }
 
-export { findOfferByType, mockOffers };
+export { findOfferByType };

@@ -1,84 +1,84 @@
 import ListPointView from '../view/list-point-view.js';
-import PointView from '../view/point-view.js';
-import EditPointView from '../view/edit-point-view.js';
 import NoPointView from '../view/no-point-view.js';
 // import AddPointView from '../view/add-point-view.js';
-import {render, replace} from '../framework/render.js';
+import { RenderPosition, render } from '../framework/render.js';
+import PointPresenter from './point-presenter.js';
+import { updateItem } from '../utils/common.js';
 
 export default class ListPresenter {
-  #listContainer = null;
+  #boardContainer = null;
   #pointsModel = null;
 
   #listPointComponent = new ListPointView();
+  #noPointComponent = new NoPointView();
 
   #points = [];
   #destinations = [];
   #offers = [];
+  #pointPresenters = new Map();
 
-  constructor({listContainer, pointsModel}) {
-    this.#listContainer = listContainer;
+  constructor({ boardContainer, pointsModel }) {
+    this.#boardContainer = boardContainer;
     this.#pointsModel = pointsModel;
   }
 
   init() {
     this.#points = [...this.#pointsModel.points];
-    this.#destinations = [...this.#pointsModel.destination];
+    this.#destinations = [...this.#pointsModel.destinations];
     this.#offers = [...this.#pointsModel.offers];
 
     this.#renderList();
   }
 
-  #renderList() {
-    render(this.#listPointComponent, this.#listContainer);
+  #renderPoint(points, destinations, offers) {
 
-    if(this.#points.length === 0) {
-      render(new NoPointView(), this.#listPointComponent.element);
-      return;
-    }
+    const pointPresenter = new PointPresenter({
+      pointListContainer: this.#listPointComponent.element,
+      destinations,
+      offers,
+      onDataChange: this.#handlePointChange,
+      onModeChange: this.#handleModeChange
+    });
 
+    pointPresenter.init(points);
+    this.#pointPresenters.set(points.id, pointPresenter);
+  }
+
+  #clearPointList() {
+    this.#pointPresenters.forEach((presenter) => presenter.destroy());
+    this.#pointPresenters.clear();
+  }
+
+  #handleModeChange = () => {
+    this.#pointPresenters.forEach((presenter) => presenter.resetView());
+  };
+
+  #handlePointChange = (updatePoint) => {
+    this.#points = updateItem(this.#points, updatePoint);
+    this.#pointPresenters.get(updatePoint.id).init(updatePoint);
+  };
+
+  #renderNoPoints() {
+    render(this.#noPointComponent, this.#listPointComponent.element, RenderPosition.AFTERBEGIN);
+  }
+
+  #renderPointList() {
     // render(new AddPointView(points[0], destinations, offers), this.listPointComponent.element);
     // render(new EditPointView(this.#points[0], this.#destinations, this.#offers), this.#listPointComponent.element);
-
     for (let i = 0; i < this.#points.length; i++) {
       // render(new PointView(this.#points[i], this.#destinations, this.#offers), this.#listPointComponent.element);
       this.#renderPoint(this.#points[i], this.#destinations, this.#offers);
     }
   }
 
-  #renderPoint(point, destination, offer) {
+  #renderList() {
+    render(this.#listPointComponent, this.#boardContainer);
 
-    const escKeyDownHandler = (evt) => {
-      if (evt.key === 'Escape') {
-        evt.preventDefault();
-        replaceFormToPoint();
-        document.removeEventListener('keydown', escKeyDownHandler);
-      }
-    };
-
-    const pointComponent = new PointView(
-      point,
-      destination,
-      offer,
-      {onEditClick: () => replacePointToForm()}
-    );
-
-    const pointEditComponent = new EditPointView(
-      point,
-      destination,
-      offer,
-      {onFormClick: () => replaceFormToPoint()}
-    );
-
-    function replacePointToForm() {
-      replace(pointEditComponent, pointComponent);
-      document.addEventListener('keydown', escKeyDownHandler);
+    if (this.#points.length === 0) {
+      this.#renderNoPoints();
+      return;
     }
 
-    function replaceFormToPoint() {
-      replace(pointComponent, pointEditComponent);
-      document.removeEventListener('keydown', escKeyDownHandler);
-    }
-
-    render(pointComponent, this.#listPointComponent.element);
+    this.#renderPointList();
   }
 }
