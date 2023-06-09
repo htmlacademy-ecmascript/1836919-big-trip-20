@@ -9,4 +9,8 @@ function getRandomArrayElement(items) {
   return items[getRandomInteger(0, items.length - 1)];
 }
 
-export { getRandomInteger, getRandomArrayElement };
+function updateItem(items, update) {
+  return items.map((item) => item.id === update.id ? update : item);
+}
+
+export { getRandomInteger, getRandomArrayElement, updateItem };

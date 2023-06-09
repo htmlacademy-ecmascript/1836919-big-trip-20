@@ -13,8 +13,9 @@ function createOffersTemplate(offerList) {
 }
 
 function createPointTemplate(points, offers, destinations) {
-  const { basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList } = points;
-  const pointDestination = destinations.find((item) => points.id === item.id);
+
+  const {basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList} = points;
+  const pointDestination = destinations.find((item) => points.destination === item.id);
   const pointOffers = offers.find((item) => type === item.type);
   const pointOffersList = pointOffers.offers.filter((item) => offersList.includes(Number(item.id)));
   const eventOffersList = createOffersTemplate(pointOffersList);
@@ -32,7 +33,7 @@ function createPointTemplate(points, offers, destinations) {
 
   const favoriteClassName = isFavorite
     ? 'event__favorite-btn--active'
-    : '';
+    : 'event__favorite-btn--disabled';
 
   return (
     `<li class="trip-events__item">
@@ -76,15 +77,18 @@ export default class PointView extends AbstractView {
   #destinations = null;
   #offers = null;
   #handleEditClick = null;
+  #handleFavoriteClick = null;
 
-  constructor({points, destinations, offers, onEditClick}) {
+  constructor({points, destinations, offers, onEditClick, onFavoriteClick}) {
     super();
     this.#points = points;
     this.#destinations = destinations;
     this.#offers = offers;
     this.#handleEditClick = onEditClick;
+    this.#handleFavoriteClick = onFavoriteClick;
 
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
+    this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
   }
 
   get template() {
@@ -94,5 +98,10 @@ export default class PointView extends AbstractView {
   #editClickHandler = (evt) => {
     evt.preventDefault();
     this.#handleEditClick();
+  };
+
+  #favoriteClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFavoriteClick();
   };
 }
