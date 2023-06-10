@@ -8,7 +8,6 @@ import { updateItem } from '../utils/common.js';
 import { sortByDay, sortByTime, sortByPrice } from '../utils/utils.js';
 import { SortType } from '../const.js';
 
-
 export default class ListPresenter {
   #boardContainer = null;
   #pointsModel = null;

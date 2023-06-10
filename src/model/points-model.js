@@ -1,4 +1,3 @@
-// import { getRandomPoint } from '../mock/point.js';
 import { mockPoints } from '../mock/point.js';
 import { mockOffers } from '../mock/offer.js';
 import { mockDestination } from '../mock/destination.js';
