@@ -14,7 +14,7 @@ function createOffersTemplate(offerList) {
 
 function createPointTemplate(points, offers, destinations) {
 
-  const {basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList} = points;
+  const { basePrice, dateTo, dateFrom, isFavorite, type, offers: offersList } = points;
   const pointDestination = destinations.find((item) => points.destination === item.id);
   const pointOffers = offers.find((item) => type === item.type);
   const pointOffersList = pointOffers.offers.filter((item) => offersList.includes(Number(item.id)));
@@ -79,7 +79,7 @@ export default class PointView extends AbstractView {
   #handleEditClick = null;
   #handleFavoriteClick = null;
 
-  constructor({points, destinations, offers, onEditClick, onFavoriteClick}) {
+  constructor({ points, destinations, offers, onEditClick, onFavoriteClick }) {
     super();
     this.#points = points;
     this.#destinations = destinations;
