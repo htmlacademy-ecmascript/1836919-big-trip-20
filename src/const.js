@@ -25,4 +25,15 @@ const FilterType = {
   PAST: 'past'
 };
 
-export { TYPES, DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY, FilterType };
+const Mode = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
+};
+
+const SortType = {
+  DAY: 'day',
+  TIME: 'time',
+  PRICE: 'price'
+};
+
+export { TYPES, DATE_FORMAT, MSEC_IN_HOUR, MSEC_IN_DAY, FilterType, Mode, SortType };

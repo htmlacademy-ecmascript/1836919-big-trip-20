@@ -1,6 +1,6 @@
 import InfoView from './view/info-view.js';
 import FilterView from './view/filter-view.js';
-import SortView from './view/sort-view.js';
+
 import { render, RenderPosition } from './framework/render.js';
 import ListPresenter from './presenter/list-presenter.js';
 import PointsModel from './model/points-model.js';
@@ -21,7 +21,7 @@ const listPresenter = new ListPresenter({
 const filters = generateFilter(pointsModel.points);
 
 render(new InfoView(), siteTripInfoElement, RenderPosition.AFTERBEGIN);
-render(new FilterView({filters}), siteTripFilterElement);
-render(new SortView(), siteTripEventsElement);
+render(new FilterView({ filters }), siteTripFilterElement);
+
 
 listPresenter.init();
