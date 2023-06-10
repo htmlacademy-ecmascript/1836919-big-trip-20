@@ -52,6 +52,7 @@ export default class ListPresenter {
       default:
         this.#points.sort(sortByDay);
     }
+
   }
 
   #renderSort() {
