@@ -43,7 +43,9 @@ export default class PointPresenter {
       points: this.#points,
       destinations: this.#destinations,
       offers: this.#offers,
-      onFormSubmit: this.#handleFormSubmit
+      onFormSubmit: this.#handleFormSubmit,
+      onRollButtonClick: this.#handleRollupButtonClick,
+      onCancelClick: this.#handleCancelClick
     });
 
     if (prePointComponent === null || prePointEditComponent === null) {
@@ -95,8 +97,16 @@ export default class PointPresenter {
     }
   };
 
+  #handleCancelClick = () => {
+    this.resetView();
+  };
+
   #handleEditClick = () => {
     this.#replacePointToForm();
+  };
+
+  #handleRollupButtonClick = () => {
+    this.#replaceFormToPoint();
   };
 
   #handleFavoriteClick = () => {
